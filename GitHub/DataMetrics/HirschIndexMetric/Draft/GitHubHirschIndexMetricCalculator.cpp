@@ -31,15 +31,15 @@ private:
 public:
   GitHubHIndexMetricConstructor();
   ~GitHubHIndexMetricConstructor();
-  void PrintString();
+  void PrintString(string output_String, int output_Data);
   void RequestGitHubHIndexMetric();
   void SetGitHubHIndexMetricData();
   void DeleteOldArray();
-  int PartitionGitHubHIndexMetricData();
-  void SortGitHubHIndexMetricData();
+  int PartitionGitHubHIndexMetricData(int** arr, int left, int right);
+  void SortGitHubHIndexMetricData(int** arr, int left, int right));
   void CalculateGitHubHIndex();
-  void PartitionTopTenResults();
-  void SortTopTenResults();
+  void PartitionTopTenResults(int** arr, int left, int right));
+  void SortTopTenResults(int** arr, int left, int right));
   int GetGitHubHIndexMetricData();
 
 };
@@ -71,15 +71,15 @@ GitHubHIndexMetricCalculator::RequestGitHubHIndexMetric(){}
 
 GitHubHIndexMetricCalculator::SetGitHubHIndexMetricData(){}
 
-GitHubHIndexMetricCalculator::PartitionGitHubHIndexMetricData(){}
+GitHubHIndexMetricCalculator::PartitionGitHubHIndexMetricData(int** arr, int left, int right)){}
 
-GitHubHIndexMetricCalculator::SortGitHubHIndexMetricData(){}
+GitHubHIndexMetricCalculator::SortGitHubHIndexMetricData(int** arr, int left, int right)){}
 
 GitHubHIndexMetricCalculator::CalculateGitHubHIndex(){}
 
-GitHubHIndexMetricCalculator::PartitionTopTenResults(){}
+GitHubHIndexMetricCalculator::PartitionTopTenResults(int** arr, int left, int right)){}
 
-GitHubHIndexMetricCalculator::SortTopTenResults(){}
+GitHubHIndexMetricCalculator::SortTopTenResults(int** arr, int left, int right)){}
 
 GitHubHIndexMetricCalculator::GetGitHubHIndexMetricData(){}
 
