@@ -1,8 +1,6 @@
 #include <iostream>
 #include <curl/curl.h>
 
-using namespace std;
-
 //Declare Class, Methods, and Variables.
 class GitHubHIndexMetricCalculator {
 
@@ -64,9 +62,9 @@ GitHubHIndexMetricCalculator::~GitHubHIndexMetricConstructor(){
 
 GitHubHIndexMetricCalculator::PrintString(string output_String, int output_Data = '\0') {
   if (output_Data == '\0'){
-    cout << output_String << endl;
+    std::cout << output_String << endl;
   } else{
-    cout << output_String << output_Data << endl;
+    std::cout << output_String << output_Data << endl;
   }
 }
 
@@ -92,8 +90,8 @@ int main(){
   testGitHubHIndexMetricCalculator.SetGitHubHIndexMetricData();
   testGitHubHIndexMetricCalculator.GetGitHubHIndexMetricData();
   testGitHubHIndexMetricCalculator.PrintString("PRESS ENTER TO EXIT THIS PROGRAM.");
-  cin.get();
-  cin.get();
+  std::cin.get();
+  std::cin.get();
 
   return 0;
 }
