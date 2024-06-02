@@ -34,6 +34,7 @@ public:
   void PrintString();
   void RequestGitHubHIndexMetric();
   void SetGitHubHIndexMetricData();
+  void DeleteOldArray();
   int PartitionGitHubHIndexMetricData();
   void SortGitHubHIndexMetricData();
   void CalculateGitHubHIndex();
@@ -46,25 +47,24 @@ public:
 //Initialize & Define Constructor, Methods, and Variables.
 GitHubHIndexMetricCalculator::GitHubHIndexMetricConstructor(nullptr) : github_h_index_2D_metric_array(), total_repository_count_(0), current_size(0), github_total_user_metric_report_array(), total_user_and_organization_count_(0) {}
 
-GitHubHIndexMetricCalculator::~GitHubHIndexMetricConstructor(){
-  for (size_t i = 0; i < total_repository_count_; ++i) {
-        delete[] github_h_index_2D_metric_array[i];
+DeleteOldArray(int count, int array){
+  for (size_t i = 0; i < count; ++i) {
+        delete[] array[i];
     }
-    delete[] github_h_index_2D_metric_array;
-
-  for (size_t i = 0; i < total_user_and_organization_count_; ++i) {
-        delete[] github_total_user_metric_report_array[i];
-    }
-    delete[] github_total_user_metric_report_array;
-
+    delete[] array;
 }
 
 GitHubHIndexMetricCalculator::PrintString(string output_String, int output_Data = '\0') {
   if (output_Data == '\0'){
-    std::cout << output_String << endl;
+    std::cout << output_String << '\nl';
   } else{
-    std::cout << output_String << output_Data << endl;
+    std::cout << output_String << output_Data << '\nl';
   }
+}
+
+GitHubHIndexMetricCalculator::~GitHubHIndexMetricConstructor(){
+  DeleteOldArray(total_repository_count_, github_h_index_2D_metric_array);
+  DeleteOldArray(total_user_and_organization_count_, github_total_user_metric_report_array);
 }
 
 GitHubHIndexMetricCalculator::RequestGitHubHIndexMetric(){}
@@ -90,7 +90,7 @@ int main(){
   testGitHubHIndexMetricCalculator.GetGitHubHIndexMetricData();
   testGitHubHIndexMetricCalculator.PrintString("PRESS ENTER TO EXIT THIS PROGRAM.");
   std::cin.get();
-  std::cin.get();
+
 
   return 0;
 }
