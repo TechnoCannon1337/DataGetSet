@@ -41,7 +41,6 @@ public:
   void PartitionTopTenResults(int** arr, int left, int right));
   void SortTopTenResults(int** arr, int left, int right));
   int GetGitHubHIndexMetricData();
-
 };
 
 //Initialize & Define Constructor, Methods, and Variables.
@@ -72,19 +71,12 @@ GitHubHIndexMetricCalculator::~GitHubHIndexMetricConstructor()
 }
 
 GitHubHIndexMetricCalculator::RequestGitHubHIndexMetric(){}
-
 GitHubHIndexMetricCalculator::SetGitHubHIndexMetricData(){}
-
 GitHubHIndexMetricCalculator::PartitionGitHubHIndexMetricData(int** arr, int left, int right)){}
-
 GitHubHIndexMetricCalculator::SortGitHubHIndexMetricData(int** arr, int left, int right)){}
-
 GitHubHIndexMetricCalculator::CalculateGitHubHIndex(){}
-
 GitHubHIndexMetricCalculator::PartitionTopTenResults(int** arr, int left, int right)){}
-
 GitHubHIndexMetricCalculator::SortTopTenResults(int** arr, int left, int right)){}
-
 GitHubHIndexMetricCalculator::GetGitHubHIndexMetricData(){}
 
 //Define, Initialize, and run main class.
