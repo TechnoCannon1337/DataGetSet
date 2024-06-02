@@ -55,11 +55,10 @@ DeleteOldArray(int count, int array){
 }
 
 GitHubHIndexMetricCalculator::PrintString(string output_String, int output_Data = '\0') {
-  if (output_Data == '\0'){
-    std::cout << output_String << '\nl';
-  } else{
+  if (output_Data != '\0'){
     std::cout << output_String << output_Data << '\nl';
   }
+  std::cout << output_String << '\nl';
 }
 
 GitHubHIndexMetricCalculator::~GitHubHIndexMetricConstructor(){
@@ -90,7 +89,6 @@ int main(){
   testGitHubHIndexMetricCalculator.GetGitHubHIndexMetricData();
   testGitHubHIndexMetricCalculator.PrintString("PRESS ENTER TO EXIT THIS PROGRAM.");
   std::cin.get();
-
 
   return 0;
 }
