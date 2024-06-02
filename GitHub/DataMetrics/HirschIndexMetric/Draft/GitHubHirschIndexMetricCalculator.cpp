@@ -1,4 +1,5 @@
 #include <iostream>
+#include <curl/curl.h>
 
 using namespace std;
 
@@ -6,33 +7,33 @@ using namespace std;
 class GitHubHIndexMetricCalculator {
 
 private:
-  string user_name;
-  string organization_name;
-  string repository_name;
-  string user_and_organization_url;
-  int rate_limit;
-  int rate_limit_reset_time;
-  int user_ID;
-  int total_user_and_organization_count;
-  int organization_ID;
-  int repository_ID;
-  int repository_forks;
-  int repository_stars;
-  int total_repository_count;
-  int total_pages;
-  int page_number;
-  bool repository_fork_status;
-  int github_h_index_result;
+  string user_name_;
+  string organization_name_;
+  string repository_name_;
+  string user_and_organization_url_;
+  int rate_limit_;
+  int rate_limit_reset_time_;
+  int user_ID_;
+  int total_user_and_organization_count_;
+  int organization_ID_;
+  int repository_ID_;
+  int repository_forks_;
+  int repository_stars_;
+  int total_repository_count_;
+  int total_pages_;
+  int page_number_;
+  bool repository_fork_status_;
+  int github_h_index_result_;
   int **github_h_index_2D_metric_array;
   int **github_total_user_metric_report_array;
   string top_ten_user_array[11][5];
   string top_ten_organization_array[11][5];
-  size_t current_size;
+  size_t current_size_;
 
 public:
   GitHubHIndexMetricConstructor();
   ~GitHubHIndexMetricConstructor();
-  void printString();
+  void PrintString();
   void RequestGitHubHIndexMetric();
   void SetGitHubHIndexMetricData();
   int PartitionGitHubHIndexMetricData();
@@ -45,23 +46,23 @@ public:
 };
 
 //Initialize & Define Constructor, Methods, and Variables.
-GitHubHIndexMetricCalculator::GitHubHIndexMetricConstructor(nullptr) : github_h_index_2D_metric_array(), total_repository_count(0), current_size(0) {}
-GitHubHIndexMetricCalculator::GitHubHIndexMetricConstructor(nullptr) : github_total_user_metric_report_array(), total_user_and_organization_count(0), current_size(0) {}
+GitHubHIndexMetricCalculator::GitHubHIndexMetricConstructor(nullptr) : github_h_index_2D_metric_array(), total_repository_count_(0), current_size(0) {}
+GitHubHIndexMetricCalculator::GitHubHIndexMetricConstructor(nullptr) : github_total_user_metric_report_array(), total_user_and_organization_count_(0), current_size(0) {}
 
 GitHubHIndexMetricCalculator::~GitHubHIndexMetricConstructor(){
-  for (size_t i = 0; i < total_repository_count; ++i) {
+  for (size_t i = 0; i < total_repository_count_; ++i) {
         delete[] github_h_index_2D_metric_array[i];
     }
     delete[] github_h_index_2D_metric_array;
 
-  for (size_t i = 0; i < total_user_and_organization_count; ++i) {
+  for (size_t i = 0; i < total_user_and_organization_count_; ++i) {
         delete[] github_total_user_metric_report_array[i];
     }
     delete[] github_total_user_metric_report_array;
 
 }
 
-GitHubHIndexMetricCalculator::printString(string output_String, int output_Data = '\0') {
+GitHubHIndexMetricCalculator::PrintString(string output_String, int output_Data = '\0') {
   if (output_Data == '\0'){
     cout << output_String << endl;
   } else{
@@ -90,7 +91,7 @@ int main(){
   GitHubHIndexMetricCalculator testGitHubHIndexMetricCalculator;
   testGitHubHIndexMetricCalculator.SetGitHubHIndexMetricData();
   testGitHubHIndexMetricCalculator.GetGitHubHIndexMetricData();
-  testGitHubHIndexMetricCalculator.printString("PRESS ENTER TO EXIT THIS PROGRAM.");
+  testGitHubHIndexMetricCalculator.PrintString("PRESS ENTER TO EXIT THIS PROGRAM.");
   cin.get();
   cin.get();
 
