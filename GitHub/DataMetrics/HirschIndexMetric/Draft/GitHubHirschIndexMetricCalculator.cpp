@@ -2,8 +2,8 @@
 #include <curl/curl.h>
 
 //Declare Class, Methods, and Variables.
-class GitHubHIndexMetricCalculator {
-
+class GitHubHIndexMetricCalculator
+{
 private:
   string user_name_;
   string organization_name_;
@@ -47,21 +47,26 @@ public:
 //Initialize & Define Constructor, Methods, and Variables.
 GitHubHIndexMetricCalculator::GitHubHIndexMetricConstructor(nullptr) : github_h_index_2D_metric_array(), total_repository_count_(0), current_size(0), github_total_user_metric_report_array(), total_user_and_organization_count_(0) {}
 
-DeleteOldArray(int count, int array){
-  for (size_t i = 0; i < count; ++i) {
-        delete[] array[i];
-    }
-    delete[] array;
+DeleteOldArray(int count, int array)
+{
+  for (size_t i = 0; i < count; ++i)
+  {
+    delete[] array[i];
+  }
+  delete[] array;
 }
 
-GitHubHIndexMetricCalculator::PrintString(string output_String, int output_Data = '\0') {
-  if (output_Data != '\0'){
+GitHubHIndexMetricCalculator::PrintString(string output_String, int output_Data = '\0')
+{
+  if (output_Data != '\0')
+  {
     std::cout << output_String << output_Data << '\nl';
   }
   std::cout << output_String << '\nl';
 }
 
-GitHubHIndexMetricCalculator::~GitHubHIndexMetricConstructor(){
+GitHubHIndexMetricCalculator::~GitHubHIndexMetricConstructor()
+{
   DeleteOldArray(total_repository_count_, github_h_index_2D_metric_array);
   DeleteOldArray(total_user_and_organization_count_, github_total_user_metric_report_array);
 }
@@ -83,7 +88,8 @@ GitHubHIndexMetricCalculator::SortTopTenResults(int** arr, int left, int right))
 GitHubHIndexMetricCalculator::GetGitHubHIndexMetricData(){}
 
 //Define, Initialize, and run main class.
-int main(){
+int main()
+{
   GitHubHIndexMetricCalculator testGitHubHIndexMetricCalculator;
   testGitHubHIndexMetricCalculator.SetGitHubHIndexMetricData();
   testGitHubHIndexMetricCalculator.GetGitHubHIndexMetricData();
