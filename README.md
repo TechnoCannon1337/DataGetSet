@@ -1,2 +1,2 @@
 # DataGetSet
-Data for Getters &amp; Setters
+For Getters &amp; Setters
