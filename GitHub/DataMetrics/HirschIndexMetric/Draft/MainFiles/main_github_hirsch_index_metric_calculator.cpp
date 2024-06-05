@@ -1,4 +1,4 @@
-#include "./HeaderFiles/github_hirsch_index_metric_calculator.h"
+#include "../HeaderFiles/github_hirsch_index_metric_calculator.h"
 
 int main()
 {
