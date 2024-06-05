@@ -60,7 +60,7 @@ public:
   GitHubHIndexMetricConstructor();
   ~GitHubHIndexMetricConstructor();
   int PrintString(string output_String, int output_Data);
-  void RequestGitHubAccounts(string base_url, int perPage, int pageNumber);
+  auto RequestGitHubAccounts(string base_url, int perPage, int pageNumber);
   void RequestGitHubHIndexMetric();
   void SetGitHubHIndexMetricData();
   void DeleteOldArray();
@@ -71,5 +71,4 @@ public:
   void SortTopTenResults(int** arr, int left, int right));
   int GetGitHubHIndexMetricData();
 };
-
 #endif
