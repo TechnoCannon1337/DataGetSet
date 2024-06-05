@@ -1,0 +1,1 @@
+GitHubHIndexMetricCalculator::CalculateGitHubHIndex(){}
