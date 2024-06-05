@@ -3,6 +3,8 @@
 #include <string>
 #include <curl/curl.h>
 
+CURLcode curl_global_init(long flags);
+
 //Declare Class, Methods, and Variables.
 class GitHubHIndexMetricCalculator
 {
@@ -10,7 +12,8 @@ private:
   size_t current_size_;
   int i;
   int response_status_code_;
-  int curl_header_ = "Accept: application/vnd.github+json", "Authorization: Bearer <YOUR-TOKEN>" , "X-GitHub-Api-Version: 2022-11-28";
+  CURL *curl;
+  struct curl_slist *header_list_ = NULL;
   string get_rate_limit_curl_=  "https://api.github.com/rate_limit";
   int rate_limit_;
   int rate_limit_reset_time_;
@@ -51,7 +54,7 @@ public:
   GitHubHIndexMetricConstructor();
   ~GitHubHIndexMetricConstructor();
   int PrintString(string output_String, int output_Data);
-  void RequestGitHubAccounts();
+  void RequestGitHubAccounts(string url, int perPage, int pageNumber);
   void RequestGitHubHIndexMetric();
   void SetGitHubHIndexMetricData();
   void DeleteOldArray();
@@ -91,7 +94,26 @@ GitHubHIndexMetricCalculator::~GitHubHIndexMetricConstructor()
   DeleteOldArray(total_repository_count_, github_h_index_2D_metric_array);
   DeleteOldArray(total_user_and_organization_count_, github_total_user_metric_report_array);
 }
-GitHubHIndexMetricCalculator::RequestGitHubAccounts(){}
+
+GitHubHIndexMetricCalculator::RequestGitHubAccounts(string url, int perPage, int pageNumber)
+{
+  curl_global_init(CURL_GLOBAL_DEFAULT);
+  curl = curl_easy_init();
+  CURLcode response;
+  if(curl)
+  {
+    curl_easy_setopt(curl, CURLOPT_URL, url);
+    header_list_ = curl_slist_append(header_list_, "Accept: application/vnd.github+json");
+    header_list_ = curl_slist_append(header_list_, "Authorization: Bearer <YOUR-TOKEN>");
+    header_list_ = curl_slist_append(header_list_, "X-GitHub-Api-Version: 2022-11-28");
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, header_list_);
+    response = curl_easy_perform(curl);
+    curl_easy_cleanup(curl);
+    curl_slist_free_all(header_list_);
+  }
+  curl_global_cleanup();
+}
+
 GitHubHIndexMetricCalculator::RequestGitHubHIndexMetric(){}
 GitHubHIndexMetricCalculator::SetGitHubHIndexMetricData(){}
 GitHubHIndexMetricCalculator::PartitionGitHubHIndexMetricData(int** arr, int left, int right)){}
