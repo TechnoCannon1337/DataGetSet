@@ -76,6 +76,14 @@ DeleteOldArray(int count, int array)
   delete[] array;
 }
 
+GitHubHIndexMetricCalculator::~GitHubHIndexMetricConstructor()
+{
+  DeleteOldArray(total_user_count_, user_array);
+  DeleteOldArray(total_organization_count_, organization_array);
+  DeleteOldArray(total_repository_count_, github_h_index_2D_metric_array);
+  DeleteOldArray(total_user_and_organization_count_, github_total_user_metric_report_array);
+}
+
 GitHubHIndexMetricCalculator::PrintString(string output_String, int output_Data = '\0')
 {
   if (output_Data != '\0')
@@ -85,14 +93,6 @@ GitHubHIndexMetricCalculator::PrintString(string output_String, int output_Data 
   }
   std::cout << output_String << '\nl';
   return 0;
-}
-
-GitHubHIndexMetricCalculator::~GitHubHIndexMetricConstructor()
-{
-  DeleteOldArray(total_user_count_, user_array);
-  DeleteOldArray(total_organization_count_, organization_array);
-  DeleteOldArray(total_repository_count_, github_h_index_2D_metric_array);
-  DeleteOldArray(total_user_and_organization_count_, github_total_user_metric_report_array);
 }
 
 GitHubHIndexMetricCalculator::RequestGitHubAccounts(string url, int perPage, int pageNumber)
