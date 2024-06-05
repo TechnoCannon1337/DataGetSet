@@ -3,7 +3,15 @@ GitHubHIndexMetricCalculator::RequestGitHubAccounts(string url, int perPage, int
 {
   curl_global_init(CURL_GLOBAL_DEFAULT);
   curl = curl_easy_init();
+
+  if (curl == NULL)
+  {
+    PrintString("HTTP request failed.", stderr);
+    return -1;
+  }
+
   CURLcode response;
+
   if(curl)
   {
     curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "GET");
@@ -16,9 +24,21 @@ GitHubHIndexMetricCalculator::RequestGitHubAccounts(string url, int perPage, int
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallBack);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
     response = curl_easy_perform(curl);
+
+    if (response != CURLE_OK)
+    {
+      // curl_easy_strerror() will return a string with the error message
+      PrintString(curl_easy_strerror(response), stderr);
+      return -1;
+    }
+
+    PrintString(response);
+    PrintString(readBuffer);
     curl_easy_cleanup(curl);
     curl_slist_free_all(header_list_);
   }
-  PrintString(readBuffer);
+
+
   curl_global_cleanup();
+
 }
