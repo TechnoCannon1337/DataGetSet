@@ -27,6 +27,7 @@ private:
   string **organization_array[][5];
   int total_user_count_;
   int total_organization_count_;
+  int total_user_and_organization_count_;
   string user_name_;
   int user_ID_;
   string organization_name_;
@@ -34,8 +35,6 @@ private:
   int total_repository_count_;
   string repos_url_;
   string user_and_organization_url_;
-  ofstream organizationCSVFile("GitHubOrganizationCSVFile.csv");
-  ofstream userCSVFile("GitHubUserCSVFile.csv");
   string list_all_user_repo_curl_=  "{user_array[{i}][3]}?per_page={total_per_page_}&page={page_number_}";
   string list_all_org_repo_curl_=  "{organization_array[{i}][3]}?per_page={total_per_page_}&page={page_number_}";
   bool repository_fork_status_;
@@ -48,8 +47,6 @@ private:
   int **github_total_user_metric_report_array;
   string top_ten_user_array[11][5];
   string top_ten_organization_array[11][5];
-  ofstream TopTenOrganizationCSVFile("TopTenGitHubOrganizationCSVFile.csv");
-  ofstream TopTenUserCSVFile("TopTenGitHubUserCSVFile.csv");
 
 public:
   GitHubHIndexMetricConstructor();
@@ -68,7 +65,7 @@ public:
 };
 
 //Initialize & Define Constructor, Methods, and Variables.
-GitHubHIndexMetricCalculator::GitHubHIndexMetricConstructor(nullptr) : github_h_index_2D_metric_array(), total_repository_count_(0), current_size(0), github_total_user_metric_report_array(), total_user_count_(0), total_organization_count_(0), user_array(), organization_array() {}
+GitHubHIndexMetricCalculator::GitHubHIndexMetricConstructor(nullptr) : github_h_index_2D_metric_array(), total_repository_count_(0), current_size(0), github_total_user_metric_report_array(), total_user_count_(0), total_user_and_organization_count_(0), total_organization_count_(0), user_array(), organization_array() {}
 
 DeleteOldArray(int count, int array)
 {
@@ -92,6 +89,8 @@ GitHubHIndexMetricCalculator::PrintString(string output_String, int output_Data 
 
 GitHubHIndexMetricCalculator::~GitHubHIndexMetricConstructor()
 {
+  DeleteOldArray(total_user_count_, user_array);
+  DeleteOldArray(total_organization_count_, organization_array);
   DeleteOldArray(total_repository_count_, github_h_index_2D_metric_array);
   DeleteOldArray(total_user_and_organization_count_, github_total_user_metric_report_array);
 }
@@ -127,7 +126,13 @@ GitHubHIndexMetricCalculator::SortGitHubHIndexMetricData(int** arr, int left, in
 GitHubHIndexMetricCalculator::CalculateGitHubHIndex(){}
 GitHubHIndexMetricCalculator::PartitionTopTenResults(int** arr, int left, int right)){}
 GitHubHIndexMetricCalculator::SortTopTenResults(int** arr, int left, int right)){}
-GitHubHIndexMetricCalculator::GetGitHubHIndexMetricData(){}
+GitHubHIndexMetricCalculator::GetGitHubHIndexMetricData()
+{
+  ofstream organizationCSVFile("GitHubOrganizationCSVFile.csv");
+  ofstream userCSVFile("GitHubUserCSVFile.csv");
+  ofstream TopTenOrganizationCSVFile("TopTenGitHubOrganizationCSVFile.csv");
+  ofstream TopTenUserCSVFile("TopTenGitHubUserCSVFile.csv");
+}
 
 //Define, Initialize, and run main class.
 int main()
