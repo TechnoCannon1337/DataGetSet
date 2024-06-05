@@ -50,4 +50,5 @@ GitHubHIndexMetricCalculator::RequestGitHubAccounts(string base_url, int perPage
 
   curl_global_cleanup();
 
+  return response;
 }
