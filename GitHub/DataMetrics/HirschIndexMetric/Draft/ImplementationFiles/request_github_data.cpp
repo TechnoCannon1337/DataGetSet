@@ -21,6 +21,9 @@ GitHubHIndexMetricCalculator::RequestGitHubAccounts(string base_url, int perPage
   }
 
   CURLcode response;
+  struct MemoryStruct chunk;
+  chunk.memory = malloc(1);
+  chunk.size = 0;
 
   if(curl)
   {
@@ -31,8 +34,10 @@ GitHubHIndexMetricCalculator::RequestGitHubAccounts(string base_url, int perPage
     header_list_ = curl_slist_append(header_list_, "Authorization: Bearer <YOUR-TOKEN>");
     header_list_ = curl_slist_append(header_list_, "X-GitHub-Api-Version: 2022-11-28");
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, header_list_);
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallBack);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&chunk);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT, "libcurl-agent/1.0");
     response = curl_easy_perform(curl);
 
     if (response != CURLE_OK)
@@ -44,7 +49,9 @@ GitHubHIndexMetricCalculator::RequestGitHubAccounts(string base_url, int perPage
 
     PrintString(response);
     PrintString(readBuffer);
+    PrintString(chunk, chunk.size);
     curl_easy_cleanup(curl);
+    free(chunk.memory);
     curl_slist_free_all(header_list_);
   }
 
