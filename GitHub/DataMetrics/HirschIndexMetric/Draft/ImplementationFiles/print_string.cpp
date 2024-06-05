@@ -1,3 +1,4 @@
+#include "../HeaderFiles/github_hirsch_index_metric_calculator.h"
 GitHubHIndexMetricCalculator::PrintString(string output_String, int output_Data = '\0')
 {
   if (output_Data != '\0')
