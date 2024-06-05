@@ -1,3 +1,6 @@
+#ifndef GITHUB_HIRSCH_INDEX_METRIC_CALCULATOR.H
+#define GITHUB_HIRSCH_INDEX_METRIC_CALCULATOR.H
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -67,3 +70,4 @@ public:
   void SortTopTenResults(int** arr, int left, int right));
   int GetGitHubHIndexMetricData();
 };
+#endif
