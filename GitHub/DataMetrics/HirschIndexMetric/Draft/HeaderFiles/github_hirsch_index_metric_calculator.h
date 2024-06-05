@@ -23,7 +23,7 @@ private:
   int total_per_page_ = 100;
   int total_pages_;
   int page_number_ = 1;
-  string list_all_organizations_curl_=  "https://api.github.com/organizations?per_page={total_per_page_}&page={page_number_}";
+  string list_all_organizations_curl_=  "https://api.github.com/organizations";
   string list_all_users_curl_=  "https://api.github.com/user";
   std::string readBuffer;
   string **user_array[][5];
@@ -37,11 +37,12 @@ private:
   int organization_ID_;
   int total_repository_count_;
   string repos_url_;
+  string final_url_;
   string user_and_organization_url_;
   ofstream organizationCSVFile("GitHubOrganizationCSVFile.csv");
   ofstream userCSVFile("GitHubUserCSVFile.csv");
-  string list_all_user_repo_curl_=  "{user_array[{i}][3]}?per_page={total_per_page_}&page={page_number_}";
-  string list_all_org_repo_curl_=  "{organization_array[{i}][3]}?per_page={total_per_page_}&page={page_number_}";
+  string list_all_user_repo_curl_=  user_array[{i}][3];
+  string list_all_org_repo_curl_=  organization_array[{i}][3];
   bool repository_fork_status_;
   string repository_name_;
   int repository_ID_;
@@ -59,7 +60,7 @@ public:
   GitHubHIndexMetricConstructor();
   ~GitHubHIndexMetricConstructor();
   int PrintString(string output_String, int output_Data);
-  void RequestGitHubAccounts(string url, int perPage, int pageNumber);
+  void RequestGitHubAccounts(string base_url, int perPage, int pageNumber);
   void RequestGitHubHIndexMetric();
   void SetGitHubHIndexMetricData();
   void DeleteOldArray();
