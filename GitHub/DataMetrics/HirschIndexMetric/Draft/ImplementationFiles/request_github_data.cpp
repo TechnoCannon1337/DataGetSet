@@ -1,3 +1,4 @@
+#include "../HeaderFiles/github_hirsch_index_metric_calculator.h"
 GitHubHIndexMetricCalculator::RequestGitHubAccounts(string url, int perPage, int pageNumber)
 {
   curl_global_init(CURL_GLOBAL_DEFAULT);
