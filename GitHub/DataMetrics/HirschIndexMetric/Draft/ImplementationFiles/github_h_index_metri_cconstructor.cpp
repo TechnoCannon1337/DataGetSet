@@ -1,3 +1,4 @@
+#include "../HeaderFiles/github_hirsch_index_metric_calculator.h"
 GitHubHIndexMetricCalculator::GitHubHIndexMetricConstructor(nullptr) : github_h_index_2D_metric_array(), total_repository_count_(0), current_size(0), github_total_user_metric_report_array(), total_user_and_organization_count_(0), total_user_count_(0), total_organization_count_(0), user_array(), organization_array() {}
 
 DeleteOldArray(int count, int array)
