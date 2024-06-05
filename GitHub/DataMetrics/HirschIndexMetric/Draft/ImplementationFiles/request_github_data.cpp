@@ -23,8 +23,8 @@ GitHubHIndexMetricCalculator::RequestGitHubAccounts(string base_url, int perPage
 
   if(curl)
   {
-    curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "GET");
     curl_easy_setopt(curl, CURLOPT_URL, final_url_);
+    curl_easy_setopt(curl, CURLOPT_HTTPGET, 1);
     curl_easy_setopt(curl, CURLOPT_DEFAULT_PROTOCOL, "https");
     header_list_ = curl_slist_append(header_list_, "Accept: application/vnd.github+json");
     header_list_ = curl_slist_append(header_list_, "Authorization: Bearer <YOUR-TOKEN>");
