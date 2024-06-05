@@ -1,10 +1,14 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 #include <curl/curl.h>
 
 //Declare Class, Methods, and Variables.
 class GitHubHIndexMetricCalculator
 {
 private:
+  size_t current_size_;
+  int i;
   int response_status_code_;
   int curl_header_ = "Accept: application/vnd.github+json", "Authorization: Bearer <YOUR-TOKEN>" , "X-GitHub-Api-Version: 2022-11-28";
   string get_rate_limit_curl_=  "https://api.github.com/rate_limit";
@@ -26,8 +30,10 @@ private:
   int total_repository_count_;
   string repos_url_;
   string user_and_organization_url_;
-  string list_all_user_repo_curl_=  "{user_array[i][3]}?per_page={total_per_page_}&page={page_number_}";
-  string list_all_org_repo_curl_=  "{organization_array[i][3]}?per_page={total_per_page_}&page={page_number_}";
+  ofstream organizationCSVFile("GitHubOrganizationCSVFile.csv");
+  ofstream userCSVFile("GitHubUserCSVFile.csv");
+  string list_all_user_repo_curl_=  "{user_array[{i}][3]}?per_page={total_per_page_}&page={page_number_}";
+  string list_all_org_repo_curl_=  "{organization_array[{i}][3]}?per_page={total_per_page_}&page={page_number_}";
   bool repository_fork_status_;
   string repository_name_;
   int repository_ID_;
@@ -38,7 +44,8 @@ private:
   int **github_total_user_metric_report_array;
   string top_ten_user_array[11][5];
   string top_ten_organization_array[11][5];
-  size_t current_size_;
+  ofstream TopTenOrganizationCSVFile("TopTenGitHubOrganizationCSVFile.csv");
+  ofstream TopTenUserCSVFile("TopTenGitHubUserCSVFile.csv");
 
 public:
   GitHubHIndexMetricConstructor();
