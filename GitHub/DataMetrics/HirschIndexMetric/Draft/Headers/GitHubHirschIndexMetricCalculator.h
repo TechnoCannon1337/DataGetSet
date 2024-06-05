@@ -27,6 +27,7 @@ private:
   string **organization_array[][5];
   int total_user_count_;
   int total_organization_count_;
+  int total_user_and_organization_count_;
   string user_name_;
   int user_ID_;
   string organization_name_;
