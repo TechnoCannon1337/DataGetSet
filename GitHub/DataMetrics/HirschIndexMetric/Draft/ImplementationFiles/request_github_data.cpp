@@ -1,4 +1,5 @@
 #include "../HeaderFiles/github_hirsch_index_metric_calculator.h"
+
 GitHubHIndexMetricCalculator::RequestGitHubAccounts(string base_url, int perPage = '\0', int pageNumber = '\0')
 {
   if (perPage != '\0' && pageNumber != '\0')
@@ -10,7 +11,7 @@ GitHubHIndexMetricCalculator::RequestGitHubAccounts(string base_url, int perPage
     final_url_ = base_url;
   }
 
-  curl_global_init(CURL_GLOBAL_DEFAULT);
+  curl_global_init(CURL_GLOBAL_ALL);
   curl = curl_easy_init();
 
   if (curl == NULL)
