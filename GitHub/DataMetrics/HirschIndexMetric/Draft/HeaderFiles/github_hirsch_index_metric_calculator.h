@@ -6,8 +6,6 @@
 #include <string>
 #include <curl/curl.h>
 
-CURLcode curl_global_init(long flags);
-
 //Declare Class, Methods, and Variables.
 class GitHubHIndexMetricCalculator
 {
@@ -15,6 +13,8 @@ private:
   size_t current_size_;
   int i;
   int response_status_code_;
+  struct MemoryStruct { char *memory; size_t size;};
+  static size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp);
   CURL *curl;
   struct curl_slist *header_list_ = NULL;
   string get_rate_limit_curl_=  "https://api.github.com/rate_limit";
