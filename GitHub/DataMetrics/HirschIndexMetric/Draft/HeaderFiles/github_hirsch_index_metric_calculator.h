@@ -71,4 +71,5 @@ public:
   void SortTopTenResults(int** arr, int left, int right));
   int GetGitHubHIndexMetricData();
 };
+
 #endif
