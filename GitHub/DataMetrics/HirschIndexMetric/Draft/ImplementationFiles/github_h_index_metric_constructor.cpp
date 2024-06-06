@@ -1,5 +1,5 @@
 #include "../HeaderFiles/github_hirsch_index_metric_calculator.h"
-GitHubHIndexMetricCalculator::GitHubHIndexMetricCalculator() : github_h_index_2D_metric_array(nullptr), total_repository_count_(0), current_size(0), github_total_user_metric_report_array(nullptr), total_user_and_organization_count_(0), total_user_count_(0), total_organization_count_(0), user_array(nullptr), organization_array(nullptr) {}
+GitHubHIndexMetricCalculator::GitHubHIndexMetricCalculator() : github_h_index_2D_metric_array(nullptr), total_repository_count_(0), current_size_(0), github_total_user_metric_report_array(nullptr), total_user_and_organization_count_(0), total_user_count_(0), total_organization_count_(0), user_array(nullptr), organization_array(nullptr) {}
 
 void DeleteOldArray(int count, int array)
 {
