@@ -6,7 +6,7 @@ struct MemoryStruct {
   size_t size;
 };
 
-static size_t GitHubHIndexMetricCalculator::WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
+size_t GitHubHIndexMetricCalculator::WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
 {
   size_t realsize = size * nmemb;
   struct MemoryStruct *mem = (struct MemoryStruct *)userp;
