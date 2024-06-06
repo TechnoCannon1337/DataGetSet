@@ -39,8 +39,6 @@ private:
   std::string repos_url_;
   std::string final_url_;
   std::string user_and_organization_url_;
-  ofstream organizationCSVFile("GitHubOrganizationCSVFile.csv");
-  ofstream userCSVFile("GitHubUserCSVFile.csv");
   std::string list_all_user_repo_curl_=  user_array[{i}][3];
   std::string list_all_org_repo_curl_=  organization_array[{i}][3];
   bool repository_fork_status_;
@@ -53,8 +51,6 @@ private:
   int **github_total_user_metric_report_array;
   std::string top_ten_user_array[11][5];
   std::string top_ten_organization_array[11][5];
-  ofstream TopTenOrganizationCSVFile("TopTenGitHubOrganizationCSVFile.csv");
-  ofstream TopTenUserCSVFile("TopTenGitHubUserCSVFile.csv");
 
 public:
   GitHubHIndexMetricConstructor();
