@@ -61,10 +61,10 @@ public:
   void SetGitHubHIndexMetricData();
   void DeleteOldArray();
   int PartitionGitHubHIndexMetricData(int** arr, int left, int right);
-  void SortGitHubHIndexMetricData(int** arr, int left, int right));
+  void SortGitHubHIndexMetricData(int** arr, int left, int right);
   void CalculateGitHubHIndex();
-  void PartitionTopTenResults(int** arr, int left, int right));
-  void SortTopTenResults(int** arr, int left, int right));
+  void PartitionTopTenResults(int** arr, int left, int right);
+  void SortTopTenResults(int** arr, int left, int right);
   int GetGitHubHIndexMetricData();
 };
 #endif
