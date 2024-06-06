@@ -1,11 +1,16 @@
-#include "../HeaderFiles/github_hirsch_index_metric_calculator.h"
+#include "./github_hirsch_index_metric_calculator.h"
 
-WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
+struct MemoryStruct {
+  char *memory;
+  size_t size;
+};
+
+static size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
 {
   size_t realsize = size * nmemb;
   struct MemoryStruct *mem = (struct MemoryStruct *)userp;
 
-  char *ptr = realloc(mem->memory, mem->size + realsize + 1);
+  char *ptr = (char*)realloc(mem->memory, mem->size + realsize + 1);
   if(!ptr) {
     /* out of memory! */
     printf("not enough memory (realloc returned NULL)\n");
