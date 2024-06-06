@@ -61,6 +61,7 @@ public:
   ~GitHubHIndexMetricConstructor();
   int PrintString(string output_String, int output_Data);
   auto RequestGitHubAccounts(string base_url, int perPage, int pageNumber);
+  int WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp);
   void RequestGitHubHIndexMetric();
   void SetGitHubHIndexMetricData();
   void DeleteOldArray();
