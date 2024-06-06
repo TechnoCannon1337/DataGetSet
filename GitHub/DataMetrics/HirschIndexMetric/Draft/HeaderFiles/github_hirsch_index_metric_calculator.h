@@ -25,8 +25,6 @@ private:
   std::string list_all_organizations_curl_=  "https://api.github.com/organizations";
   std::string list_all_users_curl_=  "https://api.github.com/user";
   std::string readBuffer;
-  std::string **user_array[][5];
-  std::string **organization_array[][5];
   int total_user_count_;
   int total_organization_count_;
   int total_user_and_organization_count_;
@@ -50,12 +48,14 @@ private:
   int **github_total_user_metric_report_array;
   std::string top_ten_user_array[11][5];
   std::string top_ten_organization_array[11][5];
+  std::string **user_array;
+  std::string **organization_array;
 
 public:
   GitHubHIndexMetricCalculator();
   ~GitHubHIndexMetricCalculator();
-  int PrintString(std::string output_String, int output_Data);
-  auto RequestGitHubAccounts(std::string base_url, int perPage, int pageNumber);
+  int PrintString(std::string output_String, int output_Data = '\0');
+  std::string RequestGitHubAccounts(std::string base_url, int perPage = 0, int pageNumber = 0);
   static size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp);
   void RequestGitHubHIndexMetric();
   void SetGitHubHIndexMetricData();
