@@ -53,8 +53,8 @@ private:
   std::string top_ten_organization_array[11][5];
 
 public:
-  GitHubHIndexMetricConstructor();
-  ~GitHubHIndexMetricConstructor();
+  GitHubHIndexMetricCalculator();
+  ~GitHubHIndexMetricCalculator();
   int PrintString(std::string output_String, int output_Data);
   auto RequestGitHubAccounts(std::string base_url, int perPage, int pageNumber);
   int WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp);
