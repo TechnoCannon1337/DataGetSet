@@ -3,7 +3,7 @@
 int main()
 {
   GitHubHIndexMetricCalculator testGitHubHIndexMetricCalculator;
-  testGitHubHIndexMetricCalculator.RequestGitHubAccounts();
+  testGitHubHIndexMetricCalculator.RequestGitHubAccounts("https://api.github.com/rate_limit");
   std::cin.get();
 
   return 0;
