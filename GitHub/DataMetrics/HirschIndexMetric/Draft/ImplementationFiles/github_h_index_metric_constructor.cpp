@@ -15,6 +15,13 @@ GitHubHIndexMetricCalculator::GitHubHIndexMetricCalculator()
 // Templated function to delete old arrays
 template <typename T>
 size_t DeleteOldArray(size_t count, T* array) {
+    delete[] array;
+    return 0;
+}
+
+// Specialization for arrays of pointers
+template <typename T>
+size_t DeleteOldArray(size_t count, T** array) {
     for (size_t i = 0; i < count; ++i) {
         delete[] array[i];
     }
@@ -31,4 +38,5 @@ GitHubHIndexMetricCalculator::~GitHubHIndexMetricCalculator() {
 
 // Explicit template instantiation for types used in the destructor
 template size_t DeleteOldArray<std::string>(size_t, std::string*);
-template size_t DeleteOldArray<int>(size_t, int*);
+template size_t DeleteOldArray<int>(size_t, int**);
+template size_t DeleteOldArray<std::string>(size_t, std::string**);
