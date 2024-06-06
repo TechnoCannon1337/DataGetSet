@@ -12,9 +12,9 @@ size_t GitHubHIndexMetricCalculator::WriteMemoryCallback(void *contents, size_t 
   struct MemoryStruct *mem = (struct MemoryStruct *)userp;
 
   char *ptr = (char*)realloc(mem->memory, mem->size + realsize + 1);
-  if(!ptr) {
+  if(ptr == NULL) {
     /* out of memory! */
-    printf("not enough memory (realloc returned NULL)\n");
+    std::cout << "not enough memory (realloc returned NULL)\n";
     return 0;
   }
 
