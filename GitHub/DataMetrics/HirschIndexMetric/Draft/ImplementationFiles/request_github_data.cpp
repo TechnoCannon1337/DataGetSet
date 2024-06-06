@@ -1,8 +1,8 @@
 #include "../HeaderFiles/github_hirsch_index_metric_calculator.h"
 
-GitHubHIndexMetricCalculator::RequestGitHubAccounts(string base_url, int perPage = '\0', int pageNumber = '\0')
+std::string GitHubHIndexMetricCalculator::RequestGitHubAccounts(std::string base_url, int perPage, int pageNumber)
 {
-  if (perPage != '\0' && pageNumber != '\0')
+  if (perPage != 0 && pageNumber != 0)
   {
     final_url_= base_url + "?per_page=" + std::to_string(total_per_page_)+ "&page=" + std::to_string(page_number_);
   }
@@ -16,13 +16,12 @@ GitHubHIndexMetricCalculator::RequestGitHubAccounts(string base_url, int perPage
 
   if (curl == NULL)
   {
-    PrintString("HTTP request failed.", stderr);
-    return -1;
+    std::cout << "HTTP request failed." << '\n';
   }
 
   CURLcode response;
   struct MemoryStruct chunk;
-  chunk.memory = malloc(1);
+  chunk.memory = (char*)malloc(1);
   chunk.size = 0;
 
   if(curl)
@@ -43,13 +42,15 @@ GitHubHIndexMetricCalculator::RequestGitHubAccounts(string base_url, int perPage
     if (response != CURLE_OK)
     {
       // curl_easy_strerror() will return a string with the error message
-      PrintString(curl_easy_strerror(response), stderr);
-      return -1;
+      std::cout << curl_easy_strerror(response) << '\n';
     }
 
-    PrintString(response);
-    PrintString(readBuffer);
-    PrintString(chunk, chunk.size);
+    std::cout << response << '\n';
+    std::cout << readBuffer << '\n';
+    for (int i = 0; i <= chunk.size; i++)
+    {
+      std::cout << i << '\n';
+    }
     curl_easy_cleanup(curl);
     free(chunk.memory);
     curl_slist_free_all(header_list_);
@@ -58,5 +59,5 @@ GitHubHIndexMetricCalculator::RequestGitHubAccounts(string base_url, int perPage
 
   curl_global_cleanup();
 
-  return response;
+  return readBuffer;
 }
