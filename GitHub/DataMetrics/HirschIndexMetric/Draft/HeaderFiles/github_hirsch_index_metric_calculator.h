@@ -66,12 +66,16 @@ public:
   std::string RequestGitHubAccounts(std::string base_url, int perPage = 0, int pageNumber = 0);
   void RequestGitHubHIndexMetric();
   void SetGitHubHIndexMetricData();
-  size_t DeleteOldArray(size_t count, auto array);
+  //size_t DeleteOldArray(size_t count, auto array);
   int PartitionGitHubHIndexMetricData(int** arr, int left, int right);
   void SortGitHubHIndexMetricData(int** arr, int left, int right);
   void CalculateGitHubHIndex();
   void PartitionTopTenResults(int** arr, int left, int right);
   void SortTopTenResults(int** arr, int left, int right);
   int GetGitHubHIndexMetricData();
+  template <typename T>
+    size_t DeleteOldArray(size_t count, T* array);
+  template <typename T>
+    size_t DeleteOldArray(size_t count, T** array);
 };
 #endif
