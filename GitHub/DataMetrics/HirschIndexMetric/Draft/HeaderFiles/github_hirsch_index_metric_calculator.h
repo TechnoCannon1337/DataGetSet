@@ -15,8 +15,13 @@ private:
   size_t current_size_;
   int i;
   int response_status_code_;
-  struct MemoryStruct;
+  struct MemoryStruct
+  {
+    char *memory;
+    size_t size;
+  };
   CURL *curl;
+  CURLcode res;
   struct curl_slist *header_list_ = NULL;
   std::string get_rate_limit_curl_=  "https://api.github.com/rate_limit";
   int rate_limit_;
@@ -52,13 +57,13 @@ private:
   std::string top_ten_organization_array[11][5];
   std::string **user_array;
   std::string **organization_array;
+  static size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp);
 
 public:
   GitHubHIndexMetricCalculator();
   ~GitHubHIndexMetricCalculator();
   int PrintString(std::string output_String, int output_Data = '\0');
   std::string RequestGitHubAccounts(std::string base_url, int perPage = 0, int pageNumber = 0);
-  static size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp);
   void RequestGitHubHIndexMetric();
   void SetGitHubHIndexMetricData();
   size_t DeleteOldArray(size_t count, auto array);
