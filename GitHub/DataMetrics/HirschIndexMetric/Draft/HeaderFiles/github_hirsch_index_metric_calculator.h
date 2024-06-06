@@ -21,7 +21,7 @@ private:
     size_t size;
   };
   CURL *curl;
-  CURLcode res;
+  CURLcode response;
   struct curl_slist *header_list_ = NULL;
   std::string get_rate_limit_curl_=  "https://api.github.com/rate_limit";
   int rate_limit_;
