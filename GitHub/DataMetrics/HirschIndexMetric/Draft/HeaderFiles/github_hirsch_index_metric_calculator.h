@@ -38,8 +38,8 @@ private:
   std::string repos_url_;
   std::string final_url_;
   std::string user_and_organization_url_;
-  std::string list_all_user_repo_curl_=  user_array[{i}][3];
-  std::string list_all_org_repo_curl_=  organization_array[{i}][3];
+  std::string list_all_user_repo_curl_;
+  std::string list_all_org_repo_curl_;
   bool repository_fork_status_;
   std::string repository_name_;
   int repository_ID_;
