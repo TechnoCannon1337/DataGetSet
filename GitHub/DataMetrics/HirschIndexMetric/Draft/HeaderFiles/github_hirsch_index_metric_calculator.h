@@ -5,6 +5,8 @@
 #include <fstream>
 #include <string>
 #include <curl/curl.h>
+#include <cstring>  // For memcpy
+#include <cstdlib>  // For realloc
 
 //Declare Class, Methods, and Variables.
 class GitHubHIndexMetricCalculator
@@ -13,7 +15,7 @@ private:
   size_t current_size_;
   int i;
   int response_status_code_;
-  struct MemoryStruct { char *memory; size_t size;};  ;
+  struct MemoryStruct;
   CURL *curl;
   struct curl_slist *header_list_ = NULL;
   std::string get_rate_limit_curl_=  "https://api.github.com/rate_limit";
@@ -59,7 +61,7 @@ public:
   static size_t WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp);
   void RequestGitHubHIndexMetric();
   void SetGitHubHIndexMetricData();
-  void DeleteOldArray();
+  size_t DeleteOldArray(size_t count, auto array);
   int PartitionGitHubHIndexMetricData(int** arr, int left, int right);
   void SortGitHubHIndexMetricData(int** arr, int left, int right);
   void CalculateGitHubHIndex();
