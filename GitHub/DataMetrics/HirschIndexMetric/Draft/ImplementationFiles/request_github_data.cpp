@@ -1,4 +1,5 @@
 #include "../HeaderFiles/github_hirsch_index_metric_calculator.h"
+//#include "./github_hirsch_index_metric_calculator.h"
 
 std::string GitHubHIndexMetricCalculator::RequestGitHubAccounts(std::string base_url, int perPage, int pageNumber)
 {
@@ -55,7 +56,6 @@ std::string GitHubHIndexMetricCalculator::RequestGitHubAccounts(std::string base
     free(chunk.memory);
     curl_slist_free_all(header_list_);
   }
-
 
   curl_global_cleanup();
 
